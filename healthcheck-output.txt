@@ -1,0 +1,41 @@
+Live healthcheck output from 21 November 2026, America/Los_Angeles.
+Captured from `python healthcheck.py` on this account. No API key is present in this file.
+
+The first two runs are kept because they showed real friction. The third run is the current monitor after the retry logic was tightened.
+
+----------------------------------------------------------------------
+5:28:43 PM PT — first probe (reasoning_effort=none, max_tokens=32 on both models)
+----------------------------------------------------------------------
+Crusoe inference healthcheck  2026-11-21T17:28:43-08:00 (America/Los_Angeles)
+Result  Model                                  HTTP  Latency   Content  Finish
+------  -------------------------------------  ----  --------  -------  ------
+OK      nvidia/Nemotron-3.5-Lightning-30B-A3B  200   306.4 ms  ready    stop
+FAIL    openai/gpt-oss-120b                    400   147.8 ms  null     —
+tokens: 23 prompt / 2 completion (~$2e-06)
+result: 1 probe(s) failed
+  [http_error] HTTP 400 from openai/gpt-oss-120b: BadRequestError 400 Harmony does not support reasoning_effort='none' (parameter=reasoning_effort)
+
+----------------------------------------------------------------------
+5:29:11 PM PT — retry without reasoning_effort, still max_tokens=32
+----------------------------------------------------------------------
+Crusoe inference healthcheck  2026-11-21T17:29:11-08:00 (America/Los_Angeles)
+Result  Model                                  HTTP  Latency   Content  Finish
+------  -------------------------------------  ----  --------  -------  ------
+OK      nvidia/Nemotron-3.5-Lightning-30B-A3B  200   212.4 ms  ready    stop
+FAIL    openai/gpt-oss-120b                    200   253.2 ms  null     length
+tokens: 97 prompt / 34 completion (~$1.3e-05)
+note: openai/gpt-oss-120b: retried without reasoning_effort after HTTP 400
+result: 1 probe(s) failed
+  [empty_reply] HTTP 200 from openai/gpt-oss-120b but message.content is None (finish_reason=length, completion_tokens=32). The model spent its token budget on reasoning and returned no customer-visible answer.
+
+----------------------------------------------------------------------
+5:29:34 PM PT — current monitor (retry without reasoning_effort, max_tokens=256)
+----------------------------------------------------------------------
+Crusoe inference healthcheck  2026-11-21T17:29:34-08:00 (America/Los_Angeles)
+Result  Model                                  HTTP  Latency   Content  Finish
+------  -------------------------------------  ----  --------  -------  ------
+OK      nvidia/Nemotron-3.5-Lightning-30B-A3B  200   178.1 ms  ready    stop
+OK      openai/gpt-oss-120b                    200   295.8 ms  ready    stop
+tokens: 97 prompt / 46 completion (~$1.6e-05)
+note: openai/gpt-oss-120b: retried without reasoning_effort after HTTP 400, max_tokens raised to 256
+result: all probes passed

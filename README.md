@@ -4,6 +4,17 @@ Personal lab for reproducing common Crusoe Serverless Inference issues against y
 
 This is not a Crusoe-internal document, and it does not claim platform behavior beyond what the API returned in this lab plus [public Serverless rate-limit docs](https://docs.crusoe.ai/serverless-inference/rate-limits/). The included `results.json` is a scrubbed snapshot from a run on 21 November 2026 at 5:13 PM PT (America/Los_Angeles) on the operator's own account.
 
+## Contents
+
+- [`practice_lab.py`](practice_lab.py) — live reproductions of common Serverless Inference failures, with named issue classes and redacted `results.json`
+- [`DEMO.md`](DEMO.md) — a 5-minute walkthrough of the empty-reply case: triage, root cause, customer update
+- [`postmortems/P1-blank-agent-responses.md`](postmortems/P1-blank-agent-responses.md) — a **hypothetical** P1 postmortem that uses the real lab evidence as its reproduction
+- [`VOICE_OF_CUSTOMER.md`](VOICE_OF_CUSTOMER.md) — new-user friction, written as docs and engineering feedback tickets
+- [`healthcheck.py`](healthcheck.py) — synthetic monitor for latency, HTTP errors, and empty content; live output is in [`healthcheck-output.txt`](healthcheck-output.txt)
+- [`PLAN_30_60_90.md`](PLAN_30_60_90.md) — a personal 30/60/90-day plan for a Senior Escalation Manager role
+- [`INTERVIEW_QUESTIONS.md`](INTERVIEW_QUESTIONS.md) — questions by public product area
+- [`tests/`](tests/) — offline unit tests, no API key required
+
 ## How to run
 
 ```bash
@@ -94,6 +105,43 @@ Escalate when a currently listed model ID returns 404, a known-good key returns 
 ## Credits and redaction
 
 Cost in the snapshot was estimated from the `usage` fields and the per-model prices returned by `GET /v1/models` ($0.05 / $0.20 per million tokens for Nemotron 3.5 Lightning). `results.json` has the API key, `Authorization` headers, and account or org IDs stripped. Do not commit a live key. If you rerun the lab, keep the new `results.json` out of git until you have confirmed it is scrubbed.
+
+## 5-minute walkthrough
+
+[`DEMO.md`](DEMO.md) is a timed script for walking through the empty-reply case live: triage on HTTP 200 with null `content`, root cause (reasoning consumed the token budget; raising `max_tokens` to 512 was not enough), then a P1 customer update on a 4-hour cadence.
+
+## Hypothetical P1 postmortem
+
+[`postmortems/P1-blank-agent-responses.md`](postmortems/P1-blank-agent-responses.md) is labelled hypothetical. The customer, the dollar figure, and the ticket timeline are invented for practice. The reproduction inside it is the real 21 November 2026 lab run.
+
+## Voice of the customer
+
+[`VOICE_OF_CUSTOMER.md`](VOICE_OF_CUSTOMER.md) turns friction from this signup and lab into feedback tickets, including:
+
+- The [create-an-account](https://docs.crusoe.ai/create-an-account.md) page says you must add a payment method to use managed inference; the [19 August 2026 updates entry](https://docs.crusoe.ai/updates/2026/august/) says introductory credits work without a payment method.
+- HTTP 200 with null `content` when reasoning exhausts `max_tokens`.
+- Raising `max_tokens` to 512 did not fix it; `reasoning_effort=none` did.
+- `openai/gpt-oss-120b` rejected `reasoning_effort=none` with HTTP 400, then returned the same empty-reply shape at `max_tokens=32`.
+
+## Healthcheck
+
+`healthcheck.py` probes cheap models for HTTP errors, empty assistant content, and high latency. It prints a status table and exits non-zero with named issue classes such as `[empty_reply]`, `[http_error]`, or `[high_latency]`. Default is a single run; `--interval 60` loops.
+
+```bash
+export CRUSOE_API_KEY=...    # never commit or paste this
+python healthcheck.py
+python healthcheck.py --interval 60 --max-runs 3
+```
+
+A live capture from 21 November 2026 is in [`healthcheck-output.txt`](healthcheck-output.txt). Combined usage for those healthcheck runs was under $0.00004. Nemotron 3.5 Lightning was healthy on a short `reasoning_effort=none` probe. `openai/gpt-oss-120b` first returned HTTP 400 on `reasoning_effort=none`, then an empty HTTP 200 at `max_tokens=32`, and then a normal `ready` once the retry cap was raised to 256.
+
+## 30 / 60 / 90-day plan
+
+[`PLAN_30_60_90.md`](PLAN_30_60_90.md) is a personal plan for a Senior Escalation Manager role, covering a practice severity matrix, an escalation playbook, an engineering feedback loop, comms templates, and metrics. It is grounded in public Crusoe products (Intelligence Foundry, CMK, GPU VMs, Managed Slurm, storage) and does not quote confidential material from prior roles.
+
+## Interview questions
+
+[`INTERVIEW_QUESTIONS.md`](INTERVIEW_QUESTIONS.md) lists questions by product area: Serverless Inference, CMK, GPU VMs, Managed Slurm, storage, and cross-product docs and cadence.
 
 ## License
 

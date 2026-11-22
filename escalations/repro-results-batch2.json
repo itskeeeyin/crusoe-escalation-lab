@@ -1,0 +1,158 @@
+{
+  "disclaimer": "Personal lab tests on the operator's own Intelligence API account. Key redacted.",
+  "started_at": "2026-11-21T18:58:47-08:00",
+  "timezone": "America/Los_Angeles",
+  "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+  "cases": {
+    "image_to_text_only_model": {
+      "request": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "note": "1x1 PNG data URI plus a one-word color question; reasoning_effort=none, max_tokens=32"
+      },
+      "response": {
+        "status_code": 400,
+        "elapsed_ms": 264.7,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:58:47 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999989",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e4aca5de3d1741-IAD"
+        },
+        "body": {
+          "error": {
+            "message": "unsupported multimodal content: image_url",
+            "type": "invalid_request_error",
+            "param": null,
+            "code": "invalid_request_error"
+          }
+        },
+        "content": null,
+        "finish_reason": null,
+        "usage": {}
+      }
+    },
+    "consecutive_user_roles": {
+      "request": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "note": "two consecutive user messages, documented Invalid Role Flow"
+      },
+      "response": {
+        "status_code": 200,
+        "elapsed_ms": 175.7,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:58:47 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "598",
+          "x-ratelimit-remaining-tokens": "1999996",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e4aca708c2c998-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-1fdc87c7",
+          "object": "chat.completion",
+          "created": 1795316327,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Hello! Yes, I am here.",
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 26,
+            "total_tokens": 34,
+            "completion_tokens": 8,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        },
+        "content": "Hello! Yes, I am here.",
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 26,
+          "total_tokens": 34,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  },
+  "usage_and_cost": {
+    "prompt_tokens": 26,
+    "completion_tokens": 8,
+    "total_tokens": 34,
+    "estimated_usd": 3e-06,
+    "estimate_complete": true,
+    "by_model": {
+      "nvidia/Nemotron-3.5-Lightning-30B-A3B": {
+        "prompt_tokens": 26,
+        "completion_tokens": 8,
+        "estimated_usd": 3e-06
+      }
+    },
+    "price_source": "model catalog or public list prices, USD per million tokens"
+  },
+  "finished_at": "2026-11-21T18:58:47-08:00",
+  "catalog_check": {
+    "note": "GET /v1/models on the same account, 21 November 2026 after the chat calls. No token usage.",
+    "models": [
+      {
+        "id": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "architecture": {
+          "modality": "text"
+        },
+        "tags": [
+          "text to text"
+        ]
+      },
+      {
+        "id": "nvidia/Nemotron-3-Nano-Omni-Reasoning-30B-A3B",
+        "architecture": {
+          "modality": "multimodal"
+        },
+        "tags": [
+          "text to text",
+          "image text to text"
+        ]
+      },
+      {
+        "id": "google/gemma-4-31b-it",
+        "architecture": {
+          "modality": "multimodal"
+        },
+        "tags": [
+          "text to text",
+          "image text to text"
+        ]
+      }
+    ]
+  }
+}

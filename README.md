@@ -146,12 +146,24 @@ A live capture from 21 November 2026 is in [`healthcheck-output.txt`](healthchec
 
 ## Example customer escalations
 
-Two practice escalations in [`escalations/`](escalations/) start from public Crusoe support or community reports, then use a real reproduction on this account. Customer names and dollar figures in those write-ups are hypothetical. What the API returned is not.
+Practice escalations in [`escalations/`](escalations/) start from public Crusoe support, docs, or community reports. Customer names and dollar figures in those write-ups are hypothetical. What the API returned is not. Issues that need paid infrastructure were left **documented, not reproduced**, and no output was invented for them.
+
+The first two use a real reproduction on this account (21 November 2026, 6:36 PM PT, America/Los_Angeles):
 
 - [`empty-content-reasoning-budget.md`](escalations/empty-content-reasoning-budget.md) — Crusoe's documented known issue that a small `max_tokens` on a reasoning model returns HTTP 200 with `message.content` `None`. Reproduced at `max_tokens=64`. The article's "raise to 1024" advice returned partial text that was still cut off (`finish_reason=length`).
 - [`stale-or-wrong-inference-endpoint.md`](escalations/stale-or-wrong-inference-endpoint.md) — official 429-from-stale-endpoint and "404 page not found" troubleshooting, plus LiteLLM's legacy-host 403 report. This lab reproduced the missing-`/v1` 404 exactly, and confirmed the current official host does not WAF-block the published path-like prompt. It did **not** reproduce a 429 or a 403.
 
-Redacted lab output: [`escalations/repro-results.json`](escalations/repro-results.json). Spend for that run was about $0.000237.
+Redacted lab output for those two: [`escalations/repro-results.json`](escalations/repro-results.json). Spend for that run was about $0.000237.
+
+Five more public-issue write-ups, added the same evening, span fine-tuning, billing and storage, CMK, networking, and vision-capable inference:
+
+- [`fine-tuning-dataset-validation.md`](escalations/fine-tuning-dataset-validation.md) — FAQ: jobs fail in `validating_files` seconds after a successful upload, usually because the file is not chat-format JSONL. **Documented, not reproduced** (no training job was created). P2, daily.
+- [`stopped-vm-os-disk-still-billed.md`](escalations/stopped-vm-os-disk-still-billed.md) — stopped VMs are not charged for compute, but the 128 GB OS persistent disk, and any persistent or shared data disks, keep billing until deleted. **Documented, not reproduced**. P2, daily.
+- [`cmk-autoscaler-unhealthy-pool-deadlock.md`](escalations/cmk-autoscaler-unhealthy-pool-deadlock.md) — when a node pool's desired count cannot be provisioned, the pool goes `STATE_UNHEALTHY` and `IncreaseSize` is silently aborted. **Documented, not reproduced**. P1, every 4 hours.
+- [`cmk-load-balancer-online-but-timeout.md`](escalations/cmk-load-balancer-online-but-timeout.md) — a new `type: LoadBalancer` Service can show every backend `Online` while client traffic is dropped, because health checks do not traverse VPC firewall rules. **Documented, not reproduced**. P1, every 4 hours.
+- [`image-to-text-only-model.md`](escalations/image-to-text-only-model.md) — official warning that sending an image to a text-only model returns a 400 or silently ignores the image. **Reproduced**: `nvidia/Nemotron-3.5-Lightning-30B-A3B` (`architecture.modality=text`) returned HTTP 400 `unsupported multimodal content: image_url` in 265 ms. The silent-ignore path was not observed. P2, daily.
+
+Redacted lab output for the image check, plus a side observation that Lightning accepted two consecutive `user` roles with HTTP 200 rather than the documented 400, is in [`escalations/repro-results-batch2.json`](escalations/repro-results-batch2.json). Spend for that run was about $0.000003.
 
 ## License
 

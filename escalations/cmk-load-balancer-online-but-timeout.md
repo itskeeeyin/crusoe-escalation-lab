@@ -24,9 +24,14 @@ Hypothetical customer: they created a `type: LoadBalancer` Service for an infere
 
 ## Reproduction status
 
-**Documented, not reproduced.** No load balancer, Service, or firewall rule was created on this account. Evidence below is the public article and firewall overview only.
+**Documented, not reproduced.**
 
-A paid sitting was authorized on 21 November 2026 at 7:18 PM PT (America/Los_Angeles) to execute `PAID_SESSION_PLAN.md`. It stopped immediately: `crusoe whoami` returned HTTP 401 / failed to authenticate user. The Cloud CLI access key in the environment was the same string as the Intelligence API key, which is a different credential type. No create commands were issued. See [`SESSION_LOG.md`](../SESSION_LOG.md).
+A paid sitting was authorized on 21 November 2026 at 7:25 PM PT (America/Los_Angeles) to execute `PAID_SESSION_PLAN.md`. `crusoe whoami` succeeded. Starting inventory was empty of VMs, disks, clusters, and load balancers. The planned creates were skipped after the Cloud API rejected them for quota:
+
+- `lab-esc-data` (1 GiB persistent SSD): `You have reached your quota for Persistent SSD Disks. Please contact support to increase your quota for Persistent SSD Disks`
+- `lab-esc-cpu` (`c1a.2x`): `You have reached your quota for General-Purpose CPU (C1A). Please contact support to increase your quota for General-Purpose CPU (C1A)`
+
+No support ticket or quota-increase request was opened. No resource was created. Teardown verification lists at 7:26:48 PM PT succeeded and showed no `lab-esc-` VMs, disks, clusters, node pools, or load balancers. See [`SESSION_LOG.md`](../SESSION_LOG.md).
 
 ## Hypotheses and tests
 

@@ -36,6 +36,8 @@ Hypothetical customer: a burst of pending pods should have added GPU or CPU node
 
 **Documented, not reproduced.** No CMK cluster or node pool was created on this account. Evidence below is the public article only.
 
+A paid sitting was authorized on 21 November 2026 at 7:18 PM PT (America/Los_Angeles) to execute `PAID_SESSION_PLAN.md`. It stopped immediately: `crusoe whoami` returned HTTP 401 / failed to authenticate user. The Cloud CLI access key in the environment was the same string as the Intelligence API key, which is a different credential type. No create commands were issued. See [`SESSION_LOG.md`](../SESSION_LOG.md).
+
 ## Hypotheses and tests
 
 | ID | Hypothesis | Test | Result |

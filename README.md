@@ -14,7 +14,8 @@ This is not a Crusoe-internal document, and it does not claim platform behavior 
 - [`PLAN_30_60_90.md`](PLAN_30_60_90.md) — a personal 30/60/90-day plan for a Senior Escalation Manager role
 - [`INTERVIEW_QUESTIONS.md`](INTERVIEW_QUESTIONS.md) — questions by public product area
 - [`escalations/`](escalations/) — example customer escalations built from public Crusoe reports plus a real lab reproduction
-- [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md) — plan only, for a later sitting, to reproduce the three paid-infrastructure issues; creates no resources
+- [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md) — plan for a paid sitting to reproduce the three infrastructure issues
+- [`SESSION_LOG.md`](SESSION_LOG.md) — log of the 21 November 2026 paid sitting: Cloud API auth failed (401); no resources were created
 - [`tests/`](tests/) — offline unit tests, no API key required
 
 ## How to run
@@ -166,7 +167,7 @@ Five more public-issue write-ups, added the same evening, span fine-tuning, bill
 
 Redacted lab output for the image check, plus a side observation that Lightning accepted two consecutive `user` roles with HTTP 200 rather than the documented 400, is in [`escalations/repro-results-batch2.json`](escalations/repro-results-batch2.json). Spend for that run was about $0.000003.
 
-Redacted fine-tuning output: [`escalations/repro-results-finetune.json`](escalations/repro-results-finetune.json). A later paid sitting for the three infrastructure issues is planned only in [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md); that file creates no resources.
+Redacted fine-tuning output: [`escalations/repro-results-finetune.json`](escalations/repro-results-finetune.json). A paid sitting to execute [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md) was attempted on 21 November 2026 at 7:18 PM PT and stopped at Cloud API authentication (`crusoe whoami` HTTP 401). No VMs, disks, clusters, or load balancers were created. Log: [`SESSION_LOG.md`](SESSION_LOG.md).
 
 ## License
 

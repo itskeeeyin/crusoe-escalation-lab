@@ -13,6 +13,7 @@ This is not a Crusoe-internal document, and it does not claim platform behavior 
 - [`healthcheck.py`](healthcheck.py) — synthetic monitor for latency, HTTP errors, and empty content; live output is in [`healthcheck-output.txt`](healthcheck-output.txt)
 - [`PLAN_30_60_90.md`](PLAN_30_60_90.md) — a personal 30/60/90-day plan for a Senior Escalation Manager role
 - [`INTERVIEW_QUESTIONS.md`](INTERVIEW_QUESTIONS.md) — questions by public product area
+- [`escalations/`](escalations/) — example customer escalations built from public Crusoe reports plus a real lab reproduction
 - [`tests/`](tests/) — offline unit tests, no API key required
 
 ## How to run
@@ -142,6 +143,15 @@ A live capture from 21 November 2026 is in [`healthcheck-output.txt`](healthchec
 ## Interview questions
 
 [`INTERVIEW_QUESTIONS.md`](INTERVIEW_QUESTIONS.md) lists questions by product area: Serverless Inference, CMK, GPU VMs, Managed Slurm, storage, and cross-product docs and cadence.
+
+## Example customer escalations
+
+Two practice escalations in [`escalations/`](escalations/) start from public Crusoe support or community reports, then use a real reproduction on this account. Customer names and dollar figures in those write-ups are hypothetical. What the API returned is not.
+
+- [`empty-content-reasoning-budget.md`](escalations/empty-content-reasoning-budget.md) — Crusoe's documented known issue that a small `max_tokens` on a reasoning model returns HTTP 200 with `message.content` `None`. Reproduced at `max_tokens=64`. The article's "raise to 1024" advice returned partial text that was still cut off (`finish_reason=length`).
+- [`stale-or-wrong-inference-endpoint.md`](escalations/stale-or-wrong-inference-endpoint.md) — official 429-from-stale-endpoint and "404 page not found" troubleshooting, plus LiteLLM's legacy-host 403 report. This lab reproduced the missing-`/v1` 404 exactly, and confirmed the current official host does not WAF-block the published path-like prompt. It did **not** reproduce a 429 or a 403.
+
+Redacted lab output: [`escalations/repro-results.json`](escalations/repro-results.json). Spend for that run was about $0.000237.
 
 ## License
 

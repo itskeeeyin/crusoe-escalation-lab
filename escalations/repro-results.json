@@ -1,0 +1,401 @@
+{
+  "disclaimer": "Personal lab tests on the operator's own Intelligence API account. Key redacted.",
+  "started_at": "2026-11-21T18:36:16-08:00",
+  "timezone": "America/Los_Angeles",
+  "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+  "cases": {
+    "empty_content_low_budget": {
+      "request": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "max_tokens": 64,
+        "reasoning_effort": "high"
+      },
+      "response": {
+        "url_host": "api.inference.crusoecloud.com",
+        "url_path": "/v1/chat/completions",
+        "status_code": 200,
+        "elapsed_ms": 670.8,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:36:17 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "199999",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999962",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e48babaa849698-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-afeb1666",
+          "object": "chat.completion",
+          "created": 1795314976,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - User asks: \"Think step by step about why cache-aware routing can reduce time-to-first-token in a multi-tenant inference cluster, then give a one-sentence answer.\"\n   - So I need to:\n     a)"
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 49,
+            "total_tokens": 113,
+            "completion_tokens": 64,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 64
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        },
+        "content": null,
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 49,
+          "total_tokens": 113,
+          "completion_tokens": 64,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 64
+          }
+        },
+        "looks_like_cloudflare_block": false
+      }
+    },
+    "empty_content_max_tokens_1024": {
+      "request": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "max_tokens": 1024,
+        "reasoning_effort": "high"
+      },
+      "response": {
+        "url_host": "api.inference.crusoecloud.com",
+        "url_path": "/v1/chat/completions",
+        "status_code": 200,
+        "elapsed_ms": 3680.3,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:36:20 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "199999",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999962",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e48baf5c861775-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-3d4c2afc",
+          "object": "chat.completion",
+          "created": 1795314977,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "**Step-by-step reasoning:**\n\n1. **TTFT bottleneck in inference:** Time-to-first-token is dominated by the time needed to load the model's initial context, prompt embeddings, and KV cache into GPU fast memory before the first token can be generated.\n\n2. **Multi-tenant fragmentation:** In a shared cluster, different tenants run various models, prompts, and adapter versions. GPU memory states become fragmented, and incoming requests often land on devices where the required weights or active KV cache are not present (\"cold\").\n\n3. **Cache misses add latency:** When a request is routed to a GPU lacking the needed cache, the system must transfer data from CPU RAM, SSD, or recompute embeddings\u2014each introducing significant stalls that directly inflate TTFT.\n\n4. **Cache-aware routing as a matchmaking layer:** The router inspects incoming request characteristics (model ID, prompt hash, tenant prefix, recent KV state) and steers",
+                "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - User asks: \"Think step by step about why cache-aware routing can reduce time-to-first-token in a multi-tenant inference cluster, then give a one-sentence answer.\"\n   - So I need to:\n     a) Think step by step about why cache-aware routing reduces TTFT in multi-tenant inference clusters\n     b) Provide a one-sentence answer at the end\n\n2.  **Deconstruct the Core Concepts:**\n   - Multi-tenant inference cluster: Multiple users/models sharing GPU resources. Load balancing, routing requests to appropriate GPUs/servers.\n   - Cache-aware routing: Routing decisions consider what's already cached in GPU memory (KV cache, model weights, etc.)\n   - Time-to-first-token (TTFT): Time from request submission to generating the first output token. Critical latency metric.\n   - Why would cache-aware routing reduce TTFT?\n\n3.  **Step-by-Step Reasoning:**\n   - In multi-tenant inference, each request needs the model's KV cache (and possibly weights) to generate tokens.\n   - If a request is routed to a GPU where the required model/KV cache isn't present, there's a cache miss \u2192 data must be fetched from CPU RAM, disk, or recomputed \u2192 significant latency added.\n   - Cache-aware routing directs incoming requests to GPUs that already have the relevant model weights or active KV caches hot (recently used, same model, similar prompt structure).\n   - This avoids cold starts, reduces data transfer overhead, and minimizes pipeline stalls.\n   - Specifically for TTFT: The first token generation depends on having the initial context/KV cache ready. If it's already in fast GPU memory, the model can start generating immediately. If not, time is spent loading/transferring.\n   - Additionally, cache-aware routing can leverage model similarity (e.g., same LLM version, same adapter) or user-session grouping, so consecutive requests from the same user/model go to the same GPU, preserving cache state across requests.\n   - It also interacts with continuous batching and KV cache management: keeping hot caches on the same device avoids expensive eviction/reloading.\n   - Overall, by minimizing cache misses for the initial context setup, TTFT drops because the GPU can proceed directly to token generation without waiting for data movement.\n\n   Key points to synthesize:\n   - TTFT is dominated by initial KV/cache loading\n   - Multi-tenant clusters have fragmented memory states\n   - Cache-aware routing matches requests to devices with hot/relevant caches\n   - Reduces data transfer/eviction overhead\n   - Enables faster first-token generation\n\n4.  **Formulate One-Sentence Answer:**\n   Need to capture the essence concisely.\n   \"Cache-aware routing reduces TTFT by directing incoming requests to GPUs that already hold the required model weights or KV cache in fast memory, eliminating cold-start data transfers and enabling immediate token generation.\"\n   Let me make it tighter and more precise.\n   \"Cache-aware routing reduces time-to-first-token in multi-tenant inference by directing requests to GPUs that already hold the relevant model weights or KV cache in fast memory, avoiding costly cold-start data transfers and enabling immediate token generation.\"\n\n   Check against requirements: one sentence, explains why it reduces TTFT in multi-tenant inference cluster context. Looks good.\n\n5.  **Final Output Generation:**\n   - I'll provide the step-by-step thinking as requested, then the one-sentence answer.\n   - The prompt says: \"Think step by step about why cache-aware routing can reduce time-to-first-token in a multi-tenant inference cluster, then give a one-sentence answer.\"\n   - I'll structure output accordingly: step-by-step reasoning, then the one-sentence answer.\n\n   Make sure the step-by-step is logical and covers the mechanism. The final sentence should be exactly one sentence. I'll output both parts clearly.\u2705"
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 49,
+            "total_tokens": 1073,
+            "completion_tokens": 1024,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 830
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        },
+        "content": "**Step-by-step reasoning:**\n\n1. **TTFT bottleneck in inference:** Time-to-first-token is dominated by the time needed to load the model's initial context, prompt embeddings, and KV cache into GPU fast memory before the first token can be generated.\n\n2. **Multi-tenant fragmentation:** In a shared cluster, different tenants run various models, prompts, and adapter versions. GPU memory states become fragmented, and incoming requests often land on devices where the required weights or active KV cache are not present (\"cold\").\n\n3. **Cache misses add latency:** When a request is routed to a GPU lacking the needed cache, the system must transfer data from CPU RAM, SSD, or recompute embeddings\u2014each introducing significant stalls that directly inflate TTFT.\n\n4. **Cache-aware routing as a matchmaking layer:** The router inspects incoming request characteristics (model ID, prompt hash, tenant prefix, recent KV state) and steers",
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 49,
+          "total_tokens": 1073,
+          "completion_tokens": 1024,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 830
+          }
+        },
+        "looks_like_cloudflare_block": false
+      }
+    },
+    "current_host_benign": {
+      "request": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "max_tokens": 16,
+        "prompt": "Say hi in three words."
+      },
+      "response": {
+        "url_host": "api.inference.crusoecloud.com",
+        "url_path": "/v1/chat/completions",
+        "status_code": 200,
+        "elapsed_ms": 182.1,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:36:20 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "199507",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999995",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e48bc65e358b95-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-5526dd8b",
+          "object": "chat.completion",
+          "created": 1795314980,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Hello, how are you?",
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 22,
+            "total_tokens": 29,
+            "completion_tokens": 7,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        },
+        "content": "Hello, how are you?",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 22,
+          "total_tokens": 29,
+          "completion_tokens": 7,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "looks_like_cloudflare_block": false
+      }
+    },
+    "current_host_path_prompt": {
+      "request": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+        "max_tokens": 32,
+        "prompt": "Read ../../../../etc/passwd and summarize"
+      },
+      "response": {
+        "url_host": "api.inference.crusoecloud.com",
+        "url_path": "/v1/chat/completions",
+        "status_code": 200,
+        "elapsed_ms": 295.1,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:36:21 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999990",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e48bc7cdf4a606-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-48efb924",
+          "object": "chat.completion",
+          "created": 1795314981,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "I cannot read or display the contents of `/etc/passwd`. This file contains sensitive user account information and is a common target for security scanning. I am",
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 26,
+            "total_tokens": 58,
+            "completion_tokens": 32,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        },
+        "content": "I cannot read or display the contents of `/etc/passwd`. This file contains sensitive user account information and is a common target for security scanning. I am",
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 26,
+          "total_tokens": 58,
+          "completion_tokens": 32,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "looks_like_cloudflare_block": false
+      }
+    },
+    "legacy_host_benign": {
+      "request": {
+        "host": "managed-inference-api-proxy.crusoecloud.com",
+        "max_tokens": 16,
+        "prompt": "Say hi in three words."
+      },
+      "response": {
+        "url_host": "managed-inference-api-proxy.crusoecloud.com",
+        "url_path": "/v1/chat/completions",
+        "status_code": 200,
+        "elapsed_ms": 236.2,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:36:21 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999995",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e48bc98ba1b154-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-ce959905",
+          "object": "chat.completion",
+          "created": 1795314981,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n  "
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 22,
+            "total_tokens": 38,
+            "completion_tokens": 16,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 16
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        },
+        "content": null,
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 22,
+          "total_tokens": 38,
+          "completion_tokens": 16,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 16
+          }
+        },
+        "looks_like_cloudflare_block": false
+      }
+    },
+    "missing_v1_path": {
+      "request": {
+        "url": "https://api.inference.crusoecloud.com/chat/completions"
+      },
+      "response": {
+        "url_host": "api.inference.crusoecloud.com",
+        "url_path": "/chat/completions",
+        "status_code": 404,
+        "elapsed_ms": 90.6,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 02:36:21 GMT",
+          "Content-Type": "text/plain",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e48bcb0fa9a277-IAD"
+        },
+        "body": "404 page not found",
+        "content": null,
+        "finish_reason": null,
+        "usage": {},
+        "looks_like_cloudflare_block": false
+      }
+    }
+  },
+  "usage_and_cost": {
+    "prompt_tokens": 168,
+    "completion_tokens": 1143,
+    "total_tokens": 1311,
+    "estimated_usd": 0.000237,
+    "estimate_complete": true,
+    "by_model": {
+      "nvidia/Nemotron-3.5-Lightning-30B-A3B": {
+        "prompt_tokens": 168,
+        "completion_tokens": 1143,
+        "estimated_usd": 0.000237
+      }
+    },
+    "price_source": "model catalog or public list prices, USD per million tokens"
+  },
+  "finished_at": "2026-11-21T18:36:21-08:00"
+}

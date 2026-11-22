@@ -1,0 +1,1880 @@
+{
+  "lab": "crusoe-escalation-practice",
+  "disclaimer": "Personal lab tests against Crusoe Serverless Inference on the operator's own account. Observations are from live API responses plus public docs. This is not a Crusoe-internal document and does not claim hidden platform behavior beyond public documentation.",
+  "started_at": "2026-11-21T17:13:06-08:00",
+  "timezone": "America/Los_Angeles",
+  "base_url": "https://api.inference.crusoecloud.com/v1",
+  "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+  "alt_model": "openai/gpt-oss-120b",
+  "models_available": [
+    {
+      "id": "openai/gpt-oss-120b",
+      "owned_by": "openai",
+      "context_length": 131072,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.05",
+        "completion": "0.25",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.05"
+      }
+    },
+    {
+      "id": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "owned_by": "nvidia",
+      "context_length": 262144,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "frequency_penalty",
+        "include",
+        "include_stop_str_in_output",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user",
+        "verbosity"
+      ],
+      "pricing": {
+        "prompt": "0.05",
+        "completion": "0.20",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.03"
+      }
+    },
+    {
+      "id": "google/gemma-4-31b-it",
+      "owned_by": "google",
+      "context_length": 262144,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.14",
+        "completion": "0.40",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.14"
+      }
+    },
+    {
+      "id": "Qwen/Qwen3.8-27B",
+      "owned_by": "Qwen",
+      "context_length": 262144,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "ebnf",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "regex",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.25",
+        "completion": "2.00",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.15"
+      }
+    },
+    {
+      "id": "nvidia/Nemotron-3-Nano-Omni-Reasoning-30B-A3B",
+      "owned_by": "nvidia",
+      "context_length": 262144,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.30",
+        "completion": "1.83",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.30"
+      }
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "owned_by": "deepseek-ai",
+      "context_length": 1048576,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "ebnf",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "regex",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.29",
+        "completion": "1.20",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.007"
+      }
+    },
+    {
+      "id": "nvidia/NVIDIA-Nemotron-3.5-Super-VL",
+      "owned_by": "nvidia",
+      "context_length": 1048576,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.10",
+        "completion": "0.40",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.08"
+      }
+    },
+    {
+      "id": "zai-org/GLM-5.3",
+      "owned_by": "zai-org",
+      "context_length": 1048576,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "ebnf",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "regex",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "1.40",
+        "completion": "4.40",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.26"
+      }
+    },
+    {
+      "id": "zai-org/GLM-5.3-Flash",
+      "owned_by": "zai-org",
+      "context_length": 1048576,
+      "supported_parameters": [
+        "add_generation_prompt",
+        "background",
+        "cache_salt",
+        "chat_template_kwargs",
+        "continue_final_message",
+        "conversation",
+        "ebnf",
+        "frequency_penalty",
+        "include",
+        "instructions",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_output_tokens",
+        "max_tokens",
+        "max_tool_calls",
+        "metadata",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "previous_response_id",
+        "prompt_cache_key",
+        "reasoning",
+        "reasoning_effort",
+        "regex",
+        "repetition_penalty",
+        "response_format",
+        "return_token_ids",
+        "safety_identifier",
+        "seed",
+        "service_tier",
+        "skip_special_tokens",
+        "stop",
+        "stop_sequences",
+        "stop_token_ids",
+        "store",
+        "structured_outputs",
+        "temperature",
+        "thinking",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p",
+        "truncation",
+        "user"
+      ],
+      "pricing": {
+        "prompt": "0.15",
+        "completion": "0.50",
+        "image": "0",
+        "request": "0",
+        "video": "0",
+        "input_cache_reads": "0.03"
+      }
+    }
+  ],
+  "models_list_status": 200,
+  "scenarios": [
+    {
+      "id": "empty_reply",
+      "title": "Empty reply on a reasoning model with a low max_tokens",
+      "reproduced": true,
+      "fix_succeeded": true,
+      "issue": "[empty_reply] HTTP 200 from nvidia/Nemotron-3.5-Lightning-30B-A3B but message.content is None (finish_reason=length, completion_tokens=64). The model spent its token budget on reasoning and returned no customer-visible answer.",
+      "break_attempts": [
+        {
+          "max_tokens": 64,
+          "reasoning_effort": "high",
+          "status_code": 200,
+          "elapsed_ms": 527.9,
+          "content": null,
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 49,
+            "total_tokens": 113,
+            "completion_tokens": 64,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 64
+            }
+          },
+          "reasoning_present": true,
+          "empty_success": true,
+          "headers": {
+            "Date": "Sun, 22 Nov 2026 01:13:07 GMT",
+            "Content-Type": "application/json",
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "199999",
+            "x-ratelimit-remaining-requests": "599",
+            "x-ratelimit-remaining-tokens": "1999962",
+            "Server": "cloudflare",
+            "CF-RAY": "a5e411d88beaae0d-IAD"
+          },
+          "body": {
+            "id": "chatcmpl-afa1f612",
+            "object": "chat.completion",
+            "created": 1795309986,
+            "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+            "choices": [
+              {
+                "index": 0,
+                "message": {
+                  "role": "assistant",
+                  "content": null,
+                  "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - User asks me to \"Think step by step about why cache-aware routing can reduce time-to-first-token in a multi-tenant inference cluster, then give a one-sentence answer.\"\n   - So I need to provide a step"
+                },
+                "logprobs": null,
+                "finish_reason": "length",
+                "stop_reason": null,
+                "token_ids": null
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 49,
+              "total_tokens": 113,
+              "completion_tokens": 64,
+              "prompt_tokens_details": null,
+              "completion_tokens_details": {
+                "reasoning_tokens": 64
+              }
+            },
+            "system_fingerprint": null,
+            "prompt_logprobs": null,
+            "prompt_token_ids": null,
+            "kv_transfer_params": null,
+            "ec_transfer_params": null
+          }
+        }
+      ],
+      "fix_reasoning_none": {
+        "max_tokens": 256,
+        "reasoning_effort": "none",
+        "status_code": 200,
+        "elapsed_ms": 326.8,
+        "content": "Cache-aware routing reduces time-to-first-token by dynamically directing incoming inference requests to servers that possess the requested model weights or activations in their local cache, thereby avoiding expensive storage fetches or remote network transfers.",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 49,
+          "total_tokens": 92,
+          "completion_tokens": 43,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "succeeded": true,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:07 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "199999",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999962",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411dbde23ae0d-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-2c0833ed",
+          "object": "chat.completion",
+          "created": 1795309987,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Cache-aware routing reduces time-to-first-token by dynamically directing incoming inference requests to servers that possess the requested model weights or activations in their local cache, thereby avoiding expensive storage fetches or remote network transfers.",
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 49,
+            "total_tokens": 92,
+            "completion_tokens": 43,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        }
+      },
+      "fix_higher_max_tokens": {
+        "max_tokens": 512,
+        "reasoning_effort": "high",
+        "status_code": 200,
+        "elapsed_ms": 1723.3,
+        "content": "",
+        "finish_reason": "length",
+        "usage": {
+          "prompt_tokens": 49,
+          "total_tokens": 561,
+          "completion_tokens": 512,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 512
+          }
+        },
+        "succeeded": false,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "199999",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "1999962",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411dddc32ae0d-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-bb84af6c",
+          "object": "chat.completion",
+          "created": 1795309987,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - User asks me to \"Think step by step about why cache-aware routing can reduce time-to-first-token in a multi-tenant inference cluster, then give a one-sentence answer.\"\n   - So I need to provide a step-by-step reasoning, followed by a single concise sentence answer.\n\n2.  **Identify Key Concepts:**\n   - Cache-aware routing\n   - Multi-tenant inference cluster\n   - Time-to-first-token (TTFT)\n   - Why it reduces TTFT\n\n3.  **Deconstruct the Problem:**\n   - What is cache-aware routing? In a multi-tenant inference cluster, different models/users share GPU resources. Cache-aware routing means directing incoming requests to the GPU/instance where the requested model's weights/activations are already cached in fast memory (like GPU HBM or KV cache).\n   - What is TTFT? The time from when a request is submitted to when the first output token is generated. It's heavily impacted by model loading, weight transfer, and KV cache initialization.\n   - How does cache-aware routing reduce TTFT?\n     - Avoids redundant model loading/weight transfer from slow storage/PCIe to GPU memory.\n     - Reuses existing KV caches if the same model/user is already running.\n     - Reduces migration overhead if switching between models on the same GPU.\n     - Keeps frequently used models/weights in fast on-device cache, so the GPU can start computation immediately without waiting for data movement.\n     - In multi-tenant settings, it minimizes cross-tenant interference and cache misses, allowing faster scheduling and execution.\n\n   - Step-by-step reasoning structure:\n     a. Define TTFT bottleneck in multi-tenant inference (model loading, data movement, KV cache setup).\n     b. Explain cache-aware routing: directing requests to where the target model's state (weights/KV cache) already resides in fast memory.\n     c. Show how this eliminates/reduces the dominant TTFT components: no cold-start weight transfer, no PCIe bottlenecks, immediate compute readiness.\n     d. Mention multi-tenant benefits: better utilization, reduced interference, smarter placement.\n     e. Conclude with the mechanistic reason for TTFT reduction.\n\n4.  **Draft - Step by Step:**\n   - Step 1: In a multi-tenant inference cluster, TTFT is primarily dominated by the time needed to bring the requested model\u2019s weights"
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 49,
+            "total_tokens": 561,
+            "completion_tokens": 512,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 512
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        }
+      }
+    },
+    {
+      "id": "wrong_model",
+      "title": "Wrong or deprecated model name",
+      "reproduced": true,
+      "issue": "[wrong_model] HTTP 404 for model nvidia/Nemotron-3.5-Lightning-30B: model_not_found Model not found: nvidia/Nemotron-3.5-Lightning-30B 26dfe2856933caf9209a258efc3e7a1b",
+      "typo_model": {
+        "model": "nvidia/Nemotron-3.5-Lightning-30B",
+        "status_code": 404,
+        "elapsed_ms": 22.7,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json; charset=utf-8",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411e8acc8ae0d-IAD"
+        },
+        "body": {
+          "code": "model_not_found",
+          "message": "Model not found: nvidia/Nemotron-3.5-Lightning-30B",
+          "error_id": "26dfe2856933caf9209a258efc3e7a1b"
+        }
+      },
+      "deprecated_model": {
+        "model": "nvidia/Nemotron-3-Nano",
+        "status_code": 404,
+        "elapsed_ms": 57.2,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json; charset=utf-8",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411e8cd39ae0d-IAD"
+        },
+        "body": {
+          "code": "model_not_found",
+          "message": "Model not found: nvidia/Nemotron-3-Nano",
+          "error_id": "8583ab170e42522ad80a9e921e1a5e3d"
+        }
+      }
+    },
+    {
+      "id": "auth_failure",
+      "title": "Bad or missing API key",
+      "reproduced": true,
+      "issue": "[auth_failure] HTTP 401 with an obviously fake API key: {\"errors\": [\"Authentication failed\"], \"id\": \"c20f0bb9d69c4dd64d6662d34d8728ce\"}",
+      "fake_key_used": "sk-crusoe-practice-fake-key-not-real",
+      "bad_key": {
+        "status_code": 401,
+        "elapsed_ms": 84.0,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json; charset=utf-8",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411e92ee3ae0d-IAD"
+        },
+        "body": {
+          "errors": [
+            "Authentication failed"
+          ],
+          "id": "c20f0bb9d69c4dd64d6662d34d8728ce"
+        }
+      },
+      "missing_key": {
+        "status_code": 401,
+        "elapsed_ms": 109.6,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411e9a8e8ae0d-IAD"
+        },
+        "body": {
+          "errors": [
+            "Authentication failed"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rate_limits",
+      "title": "Rate limits and response headers",
+      "reproduced_429": false,
+      "reproduced_503": false,
+      "issue": null,
+      "burst_requested": 25,
+      "burst_completed": 25,
+      "status_counts": {
+        "200": 26
+      },
+      "probe": {
+        "status_code": 200,
+        "elapsed_ms": 77.1,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "598",
+          "x-ratelimit-remaining-tokens": "1999997",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411ec9aa4ae0d-IAD"
+        },
+        "body": {
+          "id": "chatcmpl-2da87118",
+          "object": "chat.completion",
+          "created": 1795309989,
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "y",
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 20,
+            "total_tokens": 22,
+            "completion_tokens": 2,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": null,
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null,
+          "ec_transfer_params": null
+        }
+      },
+      "burst_headers_sample": [
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "598",
+            "x-ratelimit-remaining-tokens": "1999997"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "598",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "597",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "594",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "597",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "592",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "593",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        },
+        {
+          "status_code": 200,
+          "path": "/chat/completions",
+          "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+          "headers": {
+            "x-ratelimit-limit-output-tokens": "200000",
+            "x-ratelimit-limit-requests": "600",
+            "x-ratelimit-limit-tokens": "2000000",
+            "x-ratelimit-remaining-output-tokens": "200000",
+            "x-ratelimit-remaining-requests": "595",
+            "x-ratelimit-remaining-tokens": "2000000"
+          }
+        }
+      ],
+      "burst_error_samples": [],
+      "documented_limits": {
+        "source": "https://docs.crusoe.ai/serverless-inference/rate-limits/",
+        "scope": "per project and per model, one-minute window",
+        "no_payment_method": {
+          "tpm": 500000,
+          "rpm": 30
+        },
+        "payment_method_added": {
+          "tpm": 2000000,
+          "rpm": 600
+        },
+        "status_codes": {
+          "429": "Project exceeded TPM or RPM for the model.",
+          "503": "Request is within limits, but the shared endpoint is under high load."
+        },
+        "headers": [
+          "x-ratelimit-limit-tokens",
+          "x-ratelimit-remaining-tokens",
+          "x-ratelimit-limit-requests",
+          "x-ratelimit-remaining-requests"
+        ],
+        "retry_guidance": "Retry 429 and 503 with exponential backoff and jitter; limits reset each minute."
+      },
+      "note": "The burst is capped at 20\u201330 tiny requests so this lab does not hammer the API. If no 429 appears, use the observed rate-limit headers and Crusoe's documented defaults rather than inventing an error.",
+      "burst_usage": [
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "prompt_tokens": 17,
+          "total_tokens": 21,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "latency_streaming",
+      "title": "Latency and streaming versus non-streaming",
+      "reproduced": true,
+      "non_streaming": {
+        "status_code": 200,
+        "elapsed_ms": 153.7,
+        "ttft_ms": 153.7,
+        "content": "ready",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 23,
+          "total_tokens": 25,
+          "completion_tokens": 2,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "598",
+          "x-ratelimit-remaining-tokens": "1999992",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411eadc8bae0d-IAD"
+        }
+      },
+      "streaming": {
+        "status_code": 200,
+        "elapsed_ms": 120.7,
+        "ttft_ms": 41.8,
+        "content": "ready",
+        "finish_reason": "stop",
+        "event_count": 4,
+        "first_content_event": 2,
+        "usage": {
+          "prompt_tokens": 23,
+          "total_tokens": 25,
+          "completion_tokens": 2,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "text/event-stream",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "598",
+          "x-ratelimit-remaining-tokens": "1999992",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411ebcff4ae0d-IAD"
+        }
+      },
+      "note": "ttft_ms for streaming is time to the first non-empty SSE line. For non-streaming it is time until the full response body was read."
+    },
+    {
+      "id": "malformed_request",
+      "title": "Malformed request (expected 400)",
+      "reproduced": true,
+      "issue": "[malformed_request] HTTP 400 for a malformed chat request: invalid_request_error Missing or invalid 'messages' array (fail_to_proxy)",
+      "invalid_messages_type": {
+        "status_code": 400,
+        "elapsed_ms": 17.1,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json; charset=utf-8",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "599",
+          "x-ratelimit-remaining-tokens": "2000000",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411ea5b08ae0d-IAD"
+        },
+        "body": {
+          "error": {
+            "message": "Missing or invalid 'messages' array (fail_to_proxy)",
+            "code": null,
+            "param": null,
+            "type": "invalid_request_error"
+          }
+        }
+      },
+      "invalid_max_tokens": {
+        "status_code": 400,
+        "elapsed_ms": 61.6,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 01:13:09 GMT",
+          "Content-Type": "application/json",
+          "x-ratelimit-limit-output-tokens": "200000",
+          "x-ratelimit-limit-requests": "600",
+          "x-ratelimit-limit-tokens": "2000000",
+          "x-ratelimit-remaining-output-tokens": "200000",
+          "x-ratelimit-remaining-requests": "598",
+          "x-ratelimit-remaining-tokens": "2000000",
+          "Server": "cloudflare",
+          "CF-RAY": "a5e411ea7b41ae0d-IAD"
+        },
+        "body": {
+          "error": {
+            "message": "Failed to deserialize the JSON body into the target type: max_tokens: invalid value: integer `-1`, expected u32 at line 1 column 109",
+            "type": "invalid_request_error",
+            "param": null,
+            "code": "json_parse_error"
+          }
+        }
+      }
+    }
+  ],
+  "rate_limit_headers_observed": [
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "199999",
+        "x-ratelimit-remaining-requests": "599",
+        "x-ratelimit-remaining-tokens": "1999962"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "199999",
+        "x-ratelimit-remaining-requests": "599",
+        "x-ratelimit-remaining-tokens": "1999962"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "199999",
+        "x-ratelimit-remaining-requests": "599",
+        "x-ratelimit-remaining-tokens": "1999962"
+      }
+    },
+    {
+      "status_code": 400,
+      "path": "/chat/completions",
+      "model": null,
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "599",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 400,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "598",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "598",
+        "x-ratelimit-remaining-tokens": "1999992"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "598",
+        "x-ratelimit-remaining-tokens": "1999992"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "598",
+        "x-ratelimit-remaining-tokens": "1999997"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "598",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "597",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "594",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "597",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "592",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "593",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "595",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "596",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "592",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "592",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "591",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "588",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "589",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "590",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "587",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "586",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "587",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "586",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "586",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "585",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "583",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "584",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "580",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "582",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    },
+    {
+      "status_code": 200,
+      "path": "/chat/completions",
+      "model": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+      "headers": {
+        "x-ratelimit-limit-output-tokens": "200000",
+        "x-ratelimit-limit-requests": "600",
+        "x-ratelimit-limit-tokens": "2000000",
+        "x-ratelimit-remaining-output-tokens": "200000",
+        "x-ratelimit-remaining-requests": "581",
+        "x-ratelimit-remaining-tokens": "2000000"
+      }
+    }
+  ],
+  "usage_and_cost": {
+    "prompt_tokens": 638,
+    "completion_tokens": 725,
+    "total_tokens": 1363,
+    "estimated_usd": 0.000177,
+    "estimate_complete": true,
+    "by_model": {
+      "nvidia/Nemotron-3.5-Lightning-30B-A3B": {
+        "prompt_tokens": 638,
+        "completion_tokens": 725,
+        "estimated_usd": 0.000177
+      }
+    },
+    "price_source": "model catalog or public list prices, USD per million tokens"
+  },
+  "prices_used_usd_per_million": {
+    "nvidia/Nemotron-3.5-Lightning-30B-A3B": {
+      "prompt": 0.05,
+      "completion": 0.2
+    },
+    "openai/gpt-oss-120b": {
+      "prompt": 0.05,
+      "completion": 0.25
+    },
+    "google/gemma-4-31b-it": {
+      "prompt": 0.14,
+      "completion": 0.4
+    },
+    "Qwen/Qwen3.8-27B": {
+      "prompt": 0.25,
+      "completion": 2.0
+    },
+    "nvidia/Nemotron-3-Nano-Omni-Reasoning-30B-A3B": {
+      "prompt": 0.3,
+      "completion": 1.83
+    },
+    "deepseek-ai/DeepSeek-V4.1-Flash": {
+      "prompt": 0.29,
+      "completion": 1.2
+    },
+    "nvidia/NVIDIA-Nemotron-3.5-Super-VL": {
+      "prompt": 0.1,
+      "completion": 0.4
+    },
+    "zai-org/GLM-5.3": {
+      "prompt": 1.4,
+      "completion": 4.4
+    },
+    "zai-org/GLM-5.3-Flash": {
+      "prompt": 0.15,
+      "completion": 0.5
+    }
+  },
+  "documented_rate_limits": {
+    "source": "https://docs.crusoe.ai/serverless-inference/rate-limits/",
+    "scope": "per project and per model, one-minute window",
+    "no_payment_method": {
+      "tpm": 500000,
+      "rpm": 30
+    },
+    "payment_method_added": {
+      "tpm": 2000000,
+      "rpm": 600
+    },
+    "status_codes": {
+      "429": "Project exceeded TPM or RPM for the model.",
+      "503": "Request is within limits, but the shared endpoint is under high load."
+    },
+    "headers": [
+      "x-ratelimit-limit-tokens",
+      "x-ratelimit-remaining-tokens",
+      "x-ratelimit-limit-requests",
+      "x-ratelimit-remaining-requests"
+    ],
+    "retry_guidance": "Retry 429 and 503 with exponential backoff and jitter; limits reset each minute."
+  },
+  "finished_at": "2026-11-21T17:13:10-08:00"
+}

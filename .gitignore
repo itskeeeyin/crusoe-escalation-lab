@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+.env
+.env.*
+!.env.example
+results.json.tmp
+*.local.json
+
+# Pushed separately: GitHub rejects workflow files without the workflow OAuth scope.
+# The same workflow is in ci/github-actions.yml.
+.github/workflows/

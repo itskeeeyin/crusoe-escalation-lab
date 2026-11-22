@@ -1,0 +1,757 @@
+{
+  "disclaimer": "Personal lab tests on the operator's own Intelligence API account. Key and org/project IDs redacted. Full model catalog omitted.",
+  "started_at": "2026-11-21T19:10:25-08:00",
+  "timezone": "America/Los_Angeles",
+  "base_url": "https://api.intelligence.crusoecloud.com/v1",
+  "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+  "model_catalog_id": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+  "hard_cap_usd": 0.25,
+  "payment_added": false,
+  "valid_dataset_attempted": false,
+  "steps": {
+    "price_estimate_fine_tuning_jobs_price_estimate": {
+      "status_code": 405,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:33 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bde23a101980-IAD"
+      },
+      "body": {
+        "detail": "Method Not Allowed"
+      }
+    },
+    "price_estimate_fine_tuning_price_estimate": {
+      "status_code": 404,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:33 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bde2e816fbda-IAD"
+      },
+      "body": {
+        "detail": "Not Found"
+      }
+    },
+    "create_job": {
+      "status_code": 404,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:33 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bde38818e647-IAD"
+      },
+      "body": {
+        "detail": "Model 'meta-llama/Llama-3.1-8B-Instruct' not found"
+      }
+    },
+    "create_job_catalog_id": {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:34 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bde4f8a2265c-IAD"
+      },
+      "body": {
+        "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+        "created_at": 1795317033,
+        "error": null,
+        "fine_tuned_model": null,
+        "finished_at": null,
+        "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+        "object": "fine_tuning.job",
+        "organization_id": "[REDACTED]",
+        "result_files": [],
+        "status": "validating_files",
+        "trained_tokens": null,
+        "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+        "validation_file": null,
+        "seed": null,
+        "estimated_finish": null,
+        "method": {
+          "type": "supervised",
+          "supervised": {
+            "hyperparameters": {
+              "batch_size": "auto",
+              "learning_rate_multiplier": "auto",
+              "n_epochs": 1,
+              "lora_variant": "lora",
+              "expert_lora_sharing": null,
+              "quant_lora_method": null,
+              "lora_rank": null,
+              "lora_alpha": null,
+              "lora_dropout": null,
+              "early_stopping_patience": null,
+              "warmup_ratio": null,
+              "learning_rate": null,
+              "weight_decay": null,
+              "top_k_gating": null,
+              "checkpoint_steps": null,
+              "eval_steps_per_epoch": null,
+              "overlong_row_behavior": "error",
+              "lr_scheduler": "cosine"
+            }
+          }
+        },
+        "metadata": null,
+        "job_training_config": null
+      }
+    },
+    "bad_job_cancel_on_training": {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:41 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4be160fd03eea-IAD"
+      },
+      "body": {
+        "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+        "created_at": 1795317033,
+        "error": null,
+        "fine_tuned_model": null,
+        "finished_at": null,
+        "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+        "object": "fine_tuning.job",
+        "organization_id": "[REDACTED]",
+        "result_files": [],
+        "status": "cancelled",
+        "trained_tokens": null,
+        "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+        "validation_file": null,
+        "seed": null,
+        "estimated_finish": null,
+        "method": {
+          "type": "supervised",
+          "supervised": {
+            "hyperparameters": {
+              "n_epochs": 1,
+              "lora_rank": null,
+              "batch_size": "auto",
+              "lora_alpha": null,
+              "lora_dropout": null,
+              "lora_variant": "lora",
+              "lr_scheduler": "cosine",
+              "top_k_gating": null,
+              "warmup_ratio": null,
+              "weight_decay": null,
+              "learning_rate": null,
+              "checkpoint_steps": null,
+              "quant_lora_method": null,
+              "expert_lora_sharing": null,
+              "eval_steps_per_epoch": null,
+              "overlong_row_behavior": "error",
+              "early_stopping_patience": null,
+              "learning_rate_multiplier": "auto"
+            }
+          }
+        },
+        "metadata": null,
+        "job_training_config": null
+      },
+      "action": "cancel",
+      "job_id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509"
+    },
+    "bad_job_polls": [
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:34 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4bdea8c263913-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "validating_files",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:34-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:35 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4bdf23e6481a3-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "validating_files",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:35-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:37 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4bdf9b88fc5ad-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "validating_files",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:37-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:38 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4be008c5a1dbd-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "validating_files",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:38-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:39 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4be073b14fbda-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "validating_files",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:39-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:40 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4be0e191b55d0-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "validating_files",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:40-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:41 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4be159ad27c67-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "queued",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:41-08:00"
+      },
+      {
+        "status_code": 200,
+        "headers": {
+          "Date": "Sun, 22 Nov 2026 03:10:41 GMT",
+          "Content-Type": "application/json",
+          "server": "cloudflare",
+          "CF-RAY": "a5e4be171b8f11d6-IAD"
+        },
+        "body": {
+          "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+          "created_at": 1795317033,
+          "error": null,
+          "fine_tuned_model": null,
+          "finished_at": null,
+          "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+          "object": "fine_tuning.job",
+          "organization_id": "[REDACTED]",
+          "result_files": [],
+          "status": "cancelled",
+          "trained_tokens": null,
+          "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+          "validation_file": null,
+          "seed": null,
+          "estimated_finish": null,
+          "method": {
+            "type": "supervised",
+            "supervised": {
+              "hyperparameters": {
+                "n_epochs": 1,
+                "lora_rank": null,
+                "batch_size": "auto",
+                "lora_alpha": null,
+                "lora_dropout": null,
+                "lora_variant": "lora",
+                "lr_scheduler": "cosine",
+                "top_k_gating": null,
+                "warmup_ratio": null,
+                "weight_decay": null,
+                "learning_rate": null,
+                "checkpoint_steps": null,
+                "quant_lora_method": null,
+                "expert_lora_sharing": null,
+                "eval_steps_per_epoch": null,
+                "overlong_row_behavior": "error",
+                "early_stopping_patience": null,
+                "learning_rate_multiplier": "auto"
+              }
+            }
+          },
+          "metadata": null,
+          "job_training_config": null
+        },
+        "polled_at": "2026-11-21T19:10:41-08:00"
+      }
+    ]
+  },
+  "uploads": {
+    "prompt_completion": {
+      "status_code": 400,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:25 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bdb39a008bda-IAD"
+      },
+      "body": {
+        "detail": "Invalid JSONL file: Line 1: missing required 'messages' key"
+      },
+      "dataset": "prompt_completion"
+    },
+    "trailing_comma": {
+      "status_code": 400,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:26 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bdb47fd282b7-IAD"
+      },
+      "body": {
+        "detail": "Invalid JSONL file: Line 1: not valid JSON: trailing comma is not allowed: line 1 column 132 (char 131)"
+      },
+      "dataset": "trailing_comma"
+    },
+    "no_assistant_turn": {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:29 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bdb50b7a74d1-IAD"
+      },
+      "body": {
+        "id": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+        "bytes": 208,
+        "created_at": 1795317026,
+        "expires_at": null,
+        "filename": "no_assistant_turn.jsonl",
+        "object": "file",
+        "purpose": "fine-tune",
+        "status": "uploaded",
+        "status_details": null,
+        "is_cmek_encrypted": false
+      },
+      "dataset": "no_assistant_turn"
+    },
+    "empty_assistant": {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:33 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4bdcde81e82b7-IAD"
+      },
+      "body": {
+        "id": "files:empty_assistant.jsonl-dd5b71f6367d47fd8ef948e7b95eb7c4:[REDACTED]:2c3a2d9277e60ec7b0aab96877f1d64074ed97c1",
+        "bytes": 142,
+        "created_at": 1795317030,
+        "expires_at": null,
+        "filename": "empty_assistant.jsonl",
+        "object": "file",
+        "purpose": "fine-tune",
+        "status": "uploaded",
+        "status_details": null,
+        "is_cmek_encrypted": false
+      },
+      "dataset": "empty_assistant"
+    }
+  },
+  "file_ids_to_delete": [
+    "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+    "files:empty_assistant.jsonl-dd5b71f6367d47fd8ef948e7b95eb7c4:[REDACTED]:2c3a2d9277e60ec7b0aab96877f1d64074ed97c1"
+  ],
+  "job_ids": [
+    "ftjob-cc7a3a77f82c442fbbbea509df9a8509"
+  ],
+  "job_dataset": "no_assistant_turn",
+  "unexpected_training": true,
+  "final_job": {
+    "id": "ftjob-cc7a3a77f82c442fbbbea509df9a8509",
+    "created_at": 1795317033,
+    "error": null,
+    "fine_tuned_model": null,
+    "finished_at": null,
+    "model": "model-meta-llama-llama-3-1-8b-instruct-2e441db2",
+    "object": "fine_tuning.job",
+    "organization_id": "[REDACTED]",
+    "result_files": [],
+    "status": "cancelled",
+    "trained_tokens": null,
+    "training_file": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+    "validation_file": null,
+    "seed": null,
+    "estimated_finish": null,
+    "method": {
+      "type": "supervised",
+      "supervised": {
+        "hyperparameters": {
+          "n_epochs": 1,
+          "lora_rank": null,
+          "batch_size": "auto",
+          "lora_alpha": null,
+          "lora_dropout": null,
+          "lora_variant": "lora",
+          "lr_scheduler": "cosine",
+          "top_k_gating": null,
+          "warmup_ratio": null,
+          "weight_decay": null,
+          "learning_rate": null,
+          "checkpoint_steps": null,
+          "quant_lora_method": null,
+          "expert_lora_sharing": null,
+          "eval_steps_per_epoch": null,
+          "overlong_row_behavior": "error",
+          "early_stopping_patience": null,
+          "learning_rate_multiplier": "auto"
+        }
+      }
+    },
+    "metadata": null,
+    "job_training_config": null
+  },
+  "final_status": "cancelled",
+  "final_error": null,
+  "trained_tokens": null,
+  "created_at": 1795317033,
+  "finished_at_job": null,
+  "cleanup": [
+    {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:42 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4be185da37427-IAD"
+      },
+      "body": {
+        "id": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de",
+        "object": "file",
+        "deleted": true
+      },
+      "action": "delete_file",
+      "file_id": "files:no_assistant_turn.jsonl-a874bde0fb3b4903aa4039616257d2a2:[REDACTED]:b7a97e51056d4451a90a99dd6a5c040a96c864de"
+    },
+    {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sun, 22 Nov 2026 03:10:44 GMT",
+        "Content-Type": "application/json",
+        "server": "cloudflare",
+        "CF-RAY": "a5e4be1edb301fda-IAD"
+      },
+      "body": {
+        "id": "files:empty_assistant.jsonl-dd5b71f6367d47fd8ef948e7b95eb7c4:[REDACTED]:2c3a2d9277e60ec7b0aab96877f1d64074ed97c1",
+        "object": "file",
+        "deleted": true
+      },
+      "action": "delete_file",
+      "file_id": "files:empty_assistant.jsonl-dd5b71f6367d47fd8ef948e7b95eb7c4:[REDACTED]:2c3a2d9277e60ec7b0aab96877f1d64074ed97c1"
+    }
+  ],
+  "finished_at": "2026-11-21T19:10:44-08:00",
+  "spend_note": "Fine-tuning is billed per trained token. A failure at upload or in validating_files with trained_tokens null should be $0. Hard cap was $0.25. No payment method was added."
+}

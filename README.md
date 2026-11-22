@@ -14,6 +14,7 @@ This is not a Crusoe-internal document, and it does not claim platform behavior 
 - [`PLAN_30_60_90.md`](PLAN_30_60_90.md) — a personal 30/60/90-day plan for a Senior Escalation Manager role
 - [`INTERVIEW_QUESTIONS.md`](INTERVIEW_QUESTIONS.md) — questions by public product area
 - [`escalations/`](escalations/) — example customer escalations built from public Crusoe reports plus a real lab reproduction
+- [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md) — plan only, for a later sitting, to reproduce the three paid-infrastructure issues; creates no resources
 - [`tests/`](tests/) — offline unit tests, no API key required
 
 ## How to run
@@ -146,7 +147,7 @@ A live capture from 21 November 2026 is in [`healthcheck-output.txt`](healthchec
 
 ## Example customer escalations
 
-Practice escalations in [`escalations/`](escalations/) start from public Crusoe support, docs, or community reports. Customer names and dollar figures in those write-ups are hypothetical. What the API returned is not. Issues that need paid infrastructure were left **documented, not reproduced**, and no output was invented for them.
+Practice escalations in [`escalations/`](escalations/) start from public Crusoe support, docs, or community reports. Customer names and dollar figures in those write-ups are hypothetical. What the API returned is not. Issues that need paid infrastructure remain **documented, not reproduced**, and no output was invented for them. The fine-tuning dataset case was later reproduced on the Intelligence Foundry API.
 
 The first two use a real reproduction on this account (21 November 2026, 6:36 PM PT, America/Los_Angeles):
 
@@ -157,13 +158,15 @@ Redacted lab output for those two: [`escalations/repro-results.json`](escalation
 
 Five more public-issue write-ups, added the same evening, span fine-tuning, billing and storage, CMK, networking, and vision-capable inference:
 
-- [`fine-tuning-dataset-validation.md`](escalations/fine-tuning-dataset-validation.md) — FAQ: jobs fail in `validating_files` seconds after a successful upload, usually because the file is not chat-format JSONL. **Documented, not reproduced** (no training job was created). P2, daily.
+- [`fine-tuning-dataset-validation.md`](escalations/fine-tuning-dataset-validation.md) — FAQ: jobs fail in `validating_files` after a successful upload, usually because the file is not chat-format JSONL. **Reproduced, with a docs mismatch:** on 21 November 2026 at 7:09–7:10 PM PT, a `prompt`/`completion` JSONL and a trailing-comma file were rejected at **upload** (HTTP 400, missing `messages` key / invalid JSON). A no-assistant-turn file uploaded and passed `validating_files` into `queued` in ~7 seconds; that job was cancelled immediately, `trained_tokens` stayed null. Spend $0.00. P2, daily.
 - [`stopped-vm-os-disk-still-billed.md`](escalations/stopped-vm-os-disk-still-billed.md) — stopped VMs are not charged for compute, but the 128 GB OS persistent disk, and any persistent or shared data disks, keep billing until deleted. **Documented, not reproduced**. P2, daily.
 - [`cmk-autoscaler-unhealthy-pool-deadlock.md`](escalations/cmk-autoscaler-unhealthy-pool-deadlock.md) — when a node pool's desired count cannot be provisioned, the pool goes `STATE_UNHEALTHY` and `IncreaseSize` is silently aborted. **Documented, not reproduced**. P1, every 4 hours.
 - [`cmk-load-balancer-online-but-timeout.md`](escalations/cmk-load-balancer-online-but-timeout.md) — a new `type: LoadBalancer` Service can show every backend `Online` while client traffic is dropped, because health checks do not traverse VPC firewall rules. **Documented, not reproduced**. P1, every 4 hours.
 - [`image-to-text-only-model.md`](escalations/image-to-text-only-model.md) — official warning that sending an image to a text-only model returns a 400 or silently ignores the image. **Reproduced**: `nvidia/Nemotron-3.5-Lightning-30B-A3B` (`architecture.modality=text`) returned HTTP 400 `unsupported multimodal content: image_url` in 265 ms. The silent-ignore path was not observed. P2, daily.
 
 Redacted lab output for the image check, plus a side observation that Lightning accepted two consecutive `user` roles with HTTP 200 rather than the documented 400, is in [`escalations/repro-results-batch2.json`](escalations/repro-results-batch2.json). Spend for that run was about $0.000003.
+
+Redacted fine-tuning output: [`escalations/repro-results-finetune.json`](escalations/repro-results-finetune.json). A later paid sitting for the three infrastructure issues is planned only in [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md); that file creates no resources.
 
 ## License
 

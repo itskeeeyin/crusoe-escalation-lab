@@ -169,6 +169,10 @@ Redacted lab output for the image check, plus a side observation that Lightning 
 
 Redacted fine-tuning output: [`escalations/repro-results-finetune.json`](escalations/repro-results-finetune.json). A second paid sitting to execute [`PAID_SESSION_PLAN.md`](PAID_SESSION_PLAN.md) ran on 21 November 2026 at 7:25 PM PT. `crusoe whoami` succeeded. Creating `lab-esc-cpu` (`c1a.2x`) and `lab-esc-data` (1 GiB) was rejected for General-Purpose CPU (C1A) and Persistent SSD Disk quotas; those steps were skipped (no ticket). Inventory lists succeeded and showed no `lab-esc-` resources. Spend $0.00. Log: [`SESSION_LOG.md`](SESSION_LOG.md).
 
+## Model-routing benchmark
+
+[`routing-benchmark/`](routing-benchmark/) compares a small and a large Foundry model on 17 **synthetic** triage tickets and simulates routing between them (accuracy, latency, cost per ticket). Main run: both models fully correct on 65% of tickets; small-first with confidence-based escalation cost about 41% less than large-only. n=17, one run per case. Run on 28 November 2026 for about $0.085 total. See [`routing-benchmark/README.md`](routing-benchmark/README.md).
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

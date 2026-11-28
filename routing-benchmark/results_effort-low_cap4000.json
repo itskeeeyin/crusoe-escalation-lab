@@ -1,0 +1,1094 @@
+{
+  "synthetic_data": true,
+  "run_started": "2026-11-28T07:32:29-08:00",
+  "timezone": "PST",
+  "base_url": "https://api.inference.crusoecloud.com/v1",
+  "models": {
+    "small": "nvidia/Nemotron-3.5-Lightning-30B-A3B",
+    "large": "zai-org/GLM-5.3"
+  },
+  "settings": {
+    "temperature": 0,
+    "max_tokens": 4000,
+    "reasoning_effort": "low",
+    "runs_per_case": 1,
+    "max_retries_on_429_or_5xx": 4
+  },
+  "prices_usd_per_million_tokens": {
+    "small": {
+      "input": 0.05,
+      "output": 0.2
+    },
+    "large": {
+      "input": 1.4,
+      "output": 4.4
+    },
+    "source": "GET https://api.inference.crusoecloud.com/v1/models pricing field, read at run time; cross-check https://www.crusoe.ai/cloud/pricing"
+  },
+  "n_cases": 17,
+  "strategies": [
+    {
+      "strategy": "small-only",
+      "n": 17,
+      "acc_priority": 0.8824,
+      "acc_area": 0.8824,
+      "acc_team": 0.7059,
+      "acc_all": 0.6471,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 5.307,
+      "total_cost_usd": 0.006017,
+      "cost_per_ticket_usd": 0.000354,
+      "large_calls": 0
+    },
+    {
+      "strategy": "large-only",
+      "n": 17,
+      "acc_priority": 0.8235,
+      "acc_area": 0.8824,
+      "acc_team": 0.8824,
+      "acc_all": 0.6471,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 0.769,
+      "total_cost_usd": 0.012948,
+      "cost_per_ticket_usd": 0.000762,
+      "large_calls": 0
+    },
+    {
+      "strategy": "routed: oracle (easy->small, hard->large)",
+      "n": 17,
+      "acc_priority": 0.8235,
+      "acc_area": 0.8824,
+      "acc_team": 0.8235,
+      "acc_all": 0.6471,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 5.767,
+      "total_cost_usd": 0.01371,
+      "cost_per_ticket_usd": 0.000806,
+      "large_calls": 10
+    },
+    {
+      "strategy": "routed: heuristic (small first; escalate on failure or confidence<=3)",
+      "n": 17,
+      "acc_priority": 0.8824,
+      "acc_area": 0.8824,
+      "acc_team": 0.7059,
+      "acc_all": 0.6471,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 5.407,
+      "total_cost_usd": 0.007665,
+      "cost_per_ticket_usd": 0.000451,
+      "large_calls": 2
+    },
+    {
+      "strategy": "routed: heuristic (small first; escalate if small says P1/P2 or fails)",
+      "n": 17,
+      "acc_priority": 0.8824,
+      "acc_area": 0.8824,
+      "acc_team": 0.7647,
+      "acc_all": 0.6471,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 5.714,
+      "total_cost_usd": 0.012785,
+      "cost_per_ticket_usd": 0.000752,
+      "large_calls": 9
+    },
+    {
+      "strategy": "small-only, easy cases only",
+      "n": 7,
+      "acc_priority": 0.8571,
+      "acc_area": 0.8571,
+      "acc_team": 0.5714,
+      "acc_all": 0.5714,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 5.328,
+      "total_cost_usd": 0.00247,
+      "cost_per_ticket_usd": 0.000353,
+      "large_calls": 0
+    },
+    {
+      "strategy": "large-only, easy cases only",
+      "n": 7,
+      "acc_priority": 0.8571,
+      "acc_area": 0.8571,
+      "acc_team": 0.7143,
+      "acc_all": 0.5714,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 0.753,
+      "total_cost_usd": 0.005255,
+      "cost_per_ticket_usd": 0.000751,
+      "large_calls": 0
+    },
+    {
+      "strategy": "small-only, hard cases only",
+      "n": 10,
+      "acc_priority": 0.9,
+      "acc_area": 0.9,
+      "acc_team": 0.8,
+      "acc_all": 0.7,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 5.293,
+      "total_cost_usd": 0.003546,
+      "cost_per_ticket_usd": 0.000355,
+      "large_calls": 0
+    },
+    {
+      "strategy": "large-only, hard cases only",
+      "n": 10,
+      "acc_priority": 0.8,
+      "acc_area": 0.9,
+      "acc_team": 1.0,
+      "acc_all": 0.7,
+      "acc_priority_within1": 1.0,
+      "failures": 0,
+      "avg_latency_s": 0.78,
+      "total_cost_usd": 0.007693,
+      "cost_per_ticket_usd": 0.000769,
+      "large_calls": 0
+    }
+  ],
+  "cases": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "Our production inference API runs on a single 8xH100 VM. It crashed an hour ago and will not boot after reboot: the console is blank and the state stays 'Starting'. Our customer-facing product is completely down and we have no spare capacity.",
+      "expected": {
+        "priority": "P1",
+        "area": "gpu_vm",
+        "team": "compute_oncall"
+      },
+      "small": {
+        "latency_s": 3.024,
+        "prompt_tokens": 460,
+        "completion_tokens": 886,
+        "prediction": {
+          "priority": "P1",
+          "area": "gpu_vm",
+          "team": "compute_oncall",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0002002
+      },
+      "large": {
+        "latency_s": 0.739,
+        "prompt_tokens": 427,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P1",
+          "area": "gpu_vm",
+          "team": "compute_oncall",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0007298
+      }
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "Launching 2 more H100 VMs for our staging cluster fails with 'quota exceeded for h100-80gb-sxm-ib.8x'. No deadline, we just want the limit raised when you can.",
+      "expected": {
+        "priority": "P3",
+        "area": "billing_quota",
+        "team": "billing_quota_ops"
+      },
+      "small": {
+        "latency_s": 5.127,
+        "prompt_tokens": 458,
+        "completion_tokens": 1606,
+        "prediction": {
+          "priority": "P3",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0003441
+      },
+      "large": {
+        "latency_s": 0.666,
+        "prompt_tokens": 419,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P3",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0007186
+      }
+    },
+    {
+      "id": 3,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "I stopped my VM last week but I am still seeing charges on it. Why am I being billed for a stopped instance? It is a personal dev box, nothing is broken.",
+      "expected": {
+        "priority": "P4",
+        "area": "billing_quota",
+        "team": "support_tier1"
+      },
+      "small": {
+        "latency_s": 2.751,
+        "prompt_tokens": 443,
+        "completion_tokens": 841,
+        "prediction": {
+          "priority": "P4",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.00019035
+      },
+      "large": {
+        "latency_s": 0.637,
+        "prompt_tokens": 411,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P4",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0007074
+      }
+    },
+    {
+      "id": 4,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "Our nightly offline batch job calls Serverless Inference and gets HTTP 429 after about 700 requests per minute. We have no payment method on the account yet. Job is non-production and retries eventually finish.",
+      "expected": {
+        "priority": "P3",
+        "area": "inference",
+        "team": "support_tier1"
+      },
+      "small": {
+        "latency_s": 11.113,
+        "prompt_tokens": 454,
+        "completion_tokens": 3586,
+        "prediction": {
+          "priority": "P3",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 3
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 0,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0007399
+      },
+      "large": {
+        "latency_s": 1.032,
+        "prompt_tokens": 418,
+        "completion_tokens": 75,
+        "prediction": {
+          "priority": "P3",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 0,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0009152
+      }
+    },
+    {
+      "id": 5,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "CMK node pool autoscaler is not scaling up: 14 pods have been Pending for 2 hours and the pool sits at its minimum size. Our production web tier is a bit slow, but we manually added 3 nodes and it is coping. We would like the autoscaler fixed this week.",
+      "expected": {
+        "priority": "P3",
+        "area": "kubernetes",
+        "team": "cmk_eng"
+      },
+      "small": {
+        "latency_s": 6.195,
+        "prompt_tokens": 470,
+        "completion_tokens": 1884,
+        "prediction": {
+          "priority": "P3",
+          "area": "kubernetes",
+          "team": "cmk_eng",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0004003
+      },
+      "large": {
+        "latency_s": 0.736,
+        "prompt_tokens": 436,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P3",
+          "area": "kubernetes",
+          "team": "cmk_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0007424
+      }
+    },
+    {
+      "id": 6,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "Right now a brand new load balancer shows every backend as unhealthy and all production traffic to our app has been failing for 10 minutes. Backends respond 200 on the health path when we curl them directly from inside the VPC.",
+      "expected": {
+        "priority": "P1",
+        "area": "networking",
+        "team": "network_eng"
+      },
+      "small": {
+        "latency_s": 3.63,
+        "prompt_tokens": 457,
+        "completion_tokens": 1094,
+        "prediction": {
+          "priority": "P1",
+          "area": "networking",
+          "team": "network_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.00024165
+      },
+      "large": {
+        "latency_s": 0.781,
+        "prompt_tokens": 423,
+        "completion_tokens": 29,
+        "prediction": {
+          "priority": "P1",
+          "area": "networking",
+          "team": "network_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0007198
+      }
+    },
+    {
+      "id": 7,
+      "difficulty": "easy",
+      "synthetic": true,
+      "ticket": "Our fine-tuning job failed at validation with: 'dataset schema invalid: missing messages field at line 4211'. This is a test run, no deadline. Is our JSONL wrong?",
+      "expected": {
+        "priority": "P3",
+        "area": "fine_tuning",
+        "team": "support_tier1"
+      },
+      "small": {
+        "latency_s": 5.458,
+        "prompt_tokens": 447,
+        "completion_tokens": 1658,
+        "prediction": {
+          "priority": "P4",
+          "area": "fine_tuning",
+          "team": "ml_platform_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 0,
+          "area": 1,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.00035395
+      },
+      "large": {
+        "latency_s": 0.679,
+        "prompt_tokens": 415,
+        "completion_tokens": 32,
+        "prediction": {
+          "priority": "P4",
+          "area": "fine_tuning",
+          "team": "support_tier1",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 0,
+          "area": 1,
+          "team": 1,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0007218
+      }
+    },
+    {
+      "id": 8,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "Foundry returns HTTP 200 with an empty content string for roughly 1 in 5 requests to a reasoning model. We set max_tokens to 256. The finish_reason is 'length' and usage shows ~250 completion tokens. Dev environment only, we are evaluating.",
+      "expected": {
+        "priority": "P3",
+        "area": "inference",
+        "team": "support_tier1"
+      },
+      "small": {
+        "latency_s": 6.387,
+        "prompt_tokens": 468,
+        "completion_tokens": 2024,
+        "prediction": {
+          "priority": "P3",
+          "area": "inference",
+          "team": "inference_eng",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0004282
+      },
+      "large": {
+        "latency_s": 0.948,
+        "prompt_tokens": 430,
+        "completion_tokens": 56,
+        "prediction": {
+          "priority": "P4",
+          "area": "inference",
+          "team": "support_tier1",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 0,
+          "area": 1,
+          "team": 1,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0008484
+      }
+    },
+    {
+      "id": 9,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "Our 64-GPU training job's NCCL all-reduce bandwidth dropped about 40% since yesterday. dmesg on nodes in the same rack shows InfiniBand link down/up flaps. The job is still running but at reduced speed, and we have a model release deadline in 20 hours that we will miss at this speed.",
+      "expected": {
+        "priority": "P2",
+        "area": "networking",
+        "team": "network_eng"
+      },
+      "small": {
+        "latency_s": 3.908,
+        "prompt_tokens": 480,
+        "completion_tokens": 1240,
+        "prediction": {
+          "priority": "P2",
+          "area": "networking",
+          "team": "network_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.000272
+      },
+      "large": {
+        "latency_s": 0.696,
+        "prompt_tokens": 446,
+        "completion_tokens": 29,
+        "prediction": {
+          "priority": "P2",
+          "area": "networking",
+          "team": "network_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.000752
+      }
+    },
+    {
+      "id": 10,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "We resized a persistent disk from 2TB to 4TB and the VM now drops into emergency mode because /data will not mount. dmesg shows repeated I/O errors on the device. Our production database lives on it and has been offline for 25 minutes. Snapshots from last night exist.",
+      "expected": {
+        "priority": "P1",
+        "area": "storage",
+        "team": "storage_eng"
+      },
+      "small": {
+        "latency_s": 4.208,
+        "prompt_tokens": 470,
+        "completion_tokens": 1322,
+        "prediction": {
+          "priority": "P1",
+          "area": "storage",
+          "team": "storage_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0002879
+      },
+      "large": {
+        "latency_s": 0.746,
+        "prompt_tokens": 437,
+        "completion_tokens": 28,
+        "prediction": {
+          "priority": "P1",
+          "area": "storage",
+          "team": "storage_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.000735
+      }
+    },
+    {
+      "id": 11,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "Intermittent 429s from Serverless Inference: only about 5 requests per minute, and the x-ratelimit-remaining-tokens header shows nearly 2,000,000 remaining, with a payment method on file. Only one model is affected. About 30% of our production chatbot users see errors.",
+      "expected": {
+        "priority": "P2",
+        "area": "inference",
+        "team": "inference_eng"
+      },
+      "small": {
+        "latency_s": 4.066,
+        "prompt_tokens": 481,
+        "completion_tokens": 1271,
+        "prediction": {
+          "priority": "P2",
+          "area": "inference",
+          "team": "inference_eng",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.00027825
+      },
+      "large": {
+        "latency_s": 0.884,
+        "prompt_tokens": 443,
+        "completion_tokens": 48,
+        "prediction": {
+          "priority": "P2",
+          "area": "inference",
+          "team": "inference_eng",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0008314
+      }
+    },
+    {
+      "id": 12,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "We stopped all our VMs three weeks ago, yet this month's invoice shows $11,800 of H100 compute hours, around 40 hours per day. Payment is due in about 48 hours. Nothing is broken operationally but the amount is not plausible.",
+      "expected": {
+        "priority": "P3",
+        "area": "billing_quota",
+        "team": "billing_quota_ops"
+      },
+      "small": {
+        "latency_s": 9.705,
+        "prompt_tokens": 467,
+        "completion_tokens": 3079,
+        "prediction": {
+          "priority": "P2",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 3
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 0,
+          "area": 1,
+          "team": 1,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.00063915
+      },
+      "large": {
+        "latency_s": 0.668,
+        "prompt_tokens": 429,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P2",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 0,
+          "area": 1,
+          "team": 1,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0007326
+      }
+    },
+    {
+      "id": 13,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "A CMK upgrade from 1.31 to 1.32 has been stuck at 60% for 5 hours and the API server times out intermittently. Running workloads are fine, but we cannot deploy, and a release is scheduled for tomorrow morning with no way around the upgrade.",
+      "expected": {
+        "priority": "P2",
+        "area": "kubernetes",
+        "team": "cmk_eng"
+      },
+      "small": {
+        "latency_s": 3.684,
+        "prompt_tokens": 469,
+        "completion_tokens": 1133,
+        "prediction": {
+          "priority": "P2",
+          "area": "kubernetes",
+          "team": "cmk_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.00025005
+      },
+      "large": {
+        "latency_s": 0.672,
+        "prompt_tokens": 435,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P2",
+          "area": "kubernetes",
+          "team": "cmk_eng",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.000741
+      }
+    },
+    {
+      "id": 14,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "One of our Intelligence Foundry API keys was pushed to a public GitHub repo. Usage is now about 3M tokens per hour from IP addresses we do not recognize and the spend keeps climbing. We have not revoked it yet.",
+      "expected": {
+        "priority": "P1",
+        "area": "inference",
+        "team": "security_oncall"
+      },
+      "small": {
+        "latency_s": 6.134,
+        "prompt_tokens": 454,
+        "completion_tokens": 1910,
+        "prediction": {
+          "priority": "P1",
+          "area": "inference",
+          "team": "security_oncall",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0004047
+      },
+      "large": {
+        "latency_s": 0.892,
+        "prompt_tokens": 421,
+        "completion_tokens": 30,
+        "prediction": {
+          "priority": "P1",
+          "area": "billing_quota",
+          "team": "security_oncall",
+          "confidence": 5
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 0,
+          "team": 1,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.0007214
+      }
+    },
+    {
+      "id": 15,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "GPU 3 on one of our 8-GPU VMs logged 'Xid 79: GPU has fallen off the bus' for the third time this week. Our training framework restarts from checkpoint automatically, losing about 10 minutes each time. We would like the node replaced when convenient.",
+      "expected": {
+        "priority": "P3",
+        "area": "gpu_vm",
+        "team": "compute_oncall"
+      },
+      "small": {
+        "latency_s": 4.473,
+        "prompt_tokens": 469,
+        "completion_tokens": 1369,
+        "prediction": {
+          "priority": "P3",
+          "area": "gpu_vm",
+          "team": "compute_oncall",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.00029725
+      },
+      "large": {
+        "latency_s": 0.772,
+        "prompt_tokens": 435,
+        "completion_tokens": 44,
+        "prediction": {
+          "priority": "P3",
+          "area": "gpu_vm",
+          "team": "compute_oncall",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0008026
+      }
+    },
+    {
+      "id": 16,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "Launching a VM returns 'quota exceeded' but the console shows 0 of 16 H100 GPUs in use in that region. We have a customer demo in 3 hours that needs this capacity.",
+      "expected": {
+        "priority": "P2",
+        "area": "billing_quota",
+        "team": "billing_quota_ops"
+      },
+      "small": {
+        "latency_s": 5.783,
+        "prompt_tokens": 452,
+        "completion_tokens": 1762,
+        "prediction": {
+          "priority": "P2",
+          "area": "gpu_vm",
+          "team": "compute_oncall",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 0,
+          "team": 0,
+          "all": 0,
+          "priority_within1": 1
+        },
+        "cost": 0.000375
+      },
+      "large": {
+        "latency_s": 0.827,
+        "prompt_tokens": 415,
+        "completion_tokens": 51,
+        "prediction": {
+          "priority": "P2",
+          "area": "billing_quota",
+          "team": "billing_quota_ops",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0008054
+      }
+    },
+    {
+      "id": 17,
+      "difficulty": "hard",
+      "synthetic": true,
+      "ticket": "A fine-tuning job on a 200 MB JSONL has been in 'Validating' for 14 hours. Other jobs from our team validated in about 10 minutes yesterday. Non-production experiment, no deadline.",
+      "expected": {
+        "priority": "P3",
+        "area": "fine_tuning",
+        "team": "ml_platform_eng"
+      },
+      "small": {
+        "latency_s": 4.581,
+        "prompt_tokens": 454,
+        "completion_tokens": 1456,
+        "prediction": {
+          "priority": "P3",
+          "area": "fine_tuning",
+          "team": "ml_platform_eng",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.0003139
+      },
+      "large": {
+        "latency_s": 0.7,
+        "prompt_tokens": 419,
+        "completion_tokens": 31,
+        "prediction": {
+          "priority": "P3",
+          "area": "fine_tuning",
+          "team": "ml_platform_eng",
+          "confidence": 4
+        },
+        "failure": null,
+        "message": null,
+        "finish_reason": "stop",
+        "score": {
+          "priority": 1,
+          "area": 1,
+          "team": 1,
+          "all": 1,
+          "priority_within1": 1
+        },
+        "cost": 0.000723
+      }
+    }
+  ]
+}
